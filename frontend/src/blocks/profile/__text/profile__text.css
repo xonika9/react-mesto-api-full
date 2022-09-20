@@ -1,0 +1,16 @@
+.profile__text {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__text {
+    align-items: center;
+    margin-bottom: 30px;
+  }
+}

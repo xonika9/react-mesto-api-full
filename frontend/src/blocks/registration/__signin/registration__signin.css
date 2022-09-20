@@ -1,0 +1,13 @@
+.registration__signin {
+  margin-top: 15px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 767px) {
+  .registration__signin {
+    margin-top: 20px;
+  }
+}

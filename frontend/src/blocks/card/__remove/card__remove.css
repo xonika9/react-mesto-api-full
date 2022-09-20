@@ -1,0 +1,13 @@
+.card__remove {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  margin: 0;
+  padding: 0;
+  width: 18px;
+  height: 19px;
+  border: none;
+  background: transparent url('../../../images/remove-icon.svg') no-repeat center;
+  background-size: contain;
+  cursor: pointer;
+}

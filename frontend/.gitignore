@@ -1,0 +1,4 @@
+/node_modules
+/build
+.DS_Store
+react-mesto-auth.code-workspace

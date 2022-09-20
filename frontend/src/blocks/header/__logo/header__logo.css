@@ -1,0 +1,20 @@
+.header__logo {
+  display: block;
+  width: 142px;
+  height: 33px;
+  background-image: url('../../../images/logo.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: opacity 0.3s;
+}
+
+.header__logo:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 767px) {
+  .header__logo {
+    width: 104px;
+    height: 25px;
+  }
+}

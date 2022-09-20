@@ -1,0 +1,11 @@
+.header__burger-button_opened {
+  border: none;
+}
+
+.header__burger-button_opened::before {
+  transform: translateY(11px) rotateZ(45deg);
+}
+
+.header__burger-button_opened::after {
+  transform: rotateZ(-45deg);
+}

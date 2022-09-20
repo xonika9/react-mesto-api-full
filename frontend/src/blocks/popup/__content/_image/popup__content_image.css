@@ -1,0 +1,9 @@
+.popup__content_image {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+  border-radius: 0px;
+  background-color: transparent;
+}

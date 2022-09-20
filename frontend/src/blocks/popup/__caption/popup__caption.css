@@ -1,0 +1,11 @@
+.popup__caption {
+  overflow: hidden;
+  margin: 0;
+  margin-top: 10px;
+  color: #FFFFFF;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.25;
+}
