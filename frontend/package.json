@@ -1,7 +1,7 @@
 {
   "name": "react-mesto-auth",
-  "version": "0.1.0",
-  "homepage": "https://xonika9.github.io/react-mesto-auth",
+  "version": "0.2.0",
+  "homepage": "./",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
@@ -13,7 +13,8 @@
     "react-router-dom": "^5.3.3",
     "react-scripts": "5.0.1",
     "terser": "^5.14.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "gh-pages": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -40,8 +41,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "gh-pages": "^4.0.0"
   }
 }
