@@ -17,6 +17,7 @@ import * as auth from '../utils/auth.js';
 import api from '../utils/api';
 import successIcon from '../images/successful.svg';
 import failIcon from '../images/failed.svg';
+
 function App() {
   const history = useHistory();
   const [loggedIn, setLoggedIn] = useState(false);
@@ -29,15 +30,15 @@ function App() {
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [registrationMessage, setRegisterMessage] = useState(null);
-  const [userEmail, setUserEmail] = useState('');
+  // const [userEmail, setUserEmail] = useState('');
   useEffect(() => {
     if (!loggedIn) {
       return;
     }
     Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then(([userData, cards]) => {
-        setCurrentUser(userData);
-        setCards(cards);
+      .then(([user, cards]) => {
+        setCurrentUser(user.data);
+        setCards(cards.data);
       })
       .catch((err) => console.log(err));
   }, [loggedIn]);
@@ -79,8 +80,8 @@ function App() {
     setIsLoading(true);
     api
       .setUserInfo({ name, about })
-      .then((userData) => {
-        setCurrentUser(userData);
+      .then((user) => {
+        setCurrentUser(user.data);
         closeAllPopups();
       })
       .catch((err) => console.log(err))
@@ -90,8 +91,8 @@ function App() {
     setIsLoading(true);
     api
       .setAvatar({ avatar })
-      .then((userData) => {
-        setCurrentUser(userData);
+      .then((user) => {
+        setCurrentUser(user.data);
         closeAllPopups();
       })
       .catch((err) => console.log(err))
@@ -102,7 +103,7 @@ function App() {
     api
       .addCard({ title, link })
       .then((newCard) => {
-        setCards([newCard, ...cards]);
+        setCards([...cards, newCard.data]);
         closeAllPopups();
       })
       .catch((err) => console.log(err))
@@ -123,12 +124,12 @@ function App() {
   };
   const handleCardClick = ({ src, title }) => setSelectedCard({ src, title });
   const handleCardLike = (card) => {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     api
       .toggleLike(card._id, isLiked)
       .then((newCard) => {
         setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
+          state.map((c) => (c._id === card._id ? newCard.data : c)),
         );
       })
       .catch((err) => console.log(err));
@@ -154,11 +155,8 @@ function App() {
   function handleLogin({ email, password }) {
     auth
       .authorize({ email, password })
-      .then((data) => {
-        localStorage.setItem('token', data.token);
+      .then((user) => {
         setLoggedIn(true);
-        setUserEmail(email);
-        console.log(loggedIn);
         history.push('/');
       })
       .catch((err) => {
@@ -170,35 +168,41 @@ function App() {
       });
   }
   function handleLogout() {
-    localStorage.removeItem('token');
-    history.push('/sign-in');
+    auth
+      .logout()
+      .then(() => {
+        setLoggedIn(false);
+        history.push('/sign-in');
+      })
+      .catch((err) => console.log(err));
   }
   const checkToken = useCallback(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      return;
-    }
     auth
-      .getContent(token)
+      .checkToken()
       .then((res) => {
-        setLoggedIn(true);
-        setUserEmail(res.data.email);
-        history.push('/');
+        if (res) {
+          setLoggedIn(true);
+          history.push('/');
+        } else {
+          setLoggedIn(false);
+          history.push('/sign-in');
+        }
       })
       .catch((err) => console.log(err));
   }, [history]);
+
   useEffect(() => {
     checkToken();
   }, [checkToken]);
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className='page'>
-        <div className='page__container'>
-          <Header email={userEmail} onLogout={handleLogout} />
+      <div className="page">
+        <div className="page__container">
+          <Header email={currentUser?.email} onLogout={handleLogout} />
           <Switch>
             <ProtectedRoute
               exact
-              path='/'
+              path="/"
               component={Main}
               loggedIn={loggedIn}
               onAddPlace={handleAddPlaceClick}
@@ -209,14 +213,14 @@ function App() {
               onCardLike={handleCardLike}
               onCardDelete={handleCardDelete}
             />
-            <Route path='/sign-up'>
+            <Route path="/sign-up">
               <Register onRegister={handleRegister} />
             </Route>
-            <Route path='/sign-in'>
+            <Route path="/sign-in">
               <Login onLogin={handleLogin} />
             </Route>
-            <Route path='*'>
-              {loggedIn ? <Redirect to='/' /> : <Redirect to='/sign-in' />}
+            <Route path="*">
+              {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
             </Route>
           </Switch>
           <Footer />

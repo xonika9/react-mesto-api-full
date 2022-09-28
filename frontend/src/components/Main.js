@@ -24,36 +24,36 @@ function Main({
     );
   });
   return (
-    <main className='content'>
-      <section className='profile'>
-        <div className='profile__info'>
+    <main className="content">
+      <section className="profile">
+        <div className="profile__info">
           <a
-            className='profile__avatar'
+            className="profile__avatar"
             style={{ backgroundImage: `url(${currentUser.avatar})` }}
-            href='#'
+            href="#"
             onClick={onEditAvatar}
           ></a>
-          <div className='profile__text'>
-            <div className='profile__title'>
-              <h1 className='profile__name'>{currentUser.name}</h1>
+          <div className="profile__text">
+            <div className="profile__title">
+              <h1 className="profile__name">{currentUser.name}</h1>
               <button
-                className='profile__edit-button'
-                type='button'
-                aria-label='Редактировать'
+                className="profile__edit-button"
+                type="button"
+                aria-label="Редактировать"
                 onClick={onEditProfile}
               />
             </div>
-            <p className='profile__about'>{currentUser.about}</p>
+            <p className="profile__about">{currentUser.about}</p>
           </div>
         </div>
         <button
-          className='profile__add-button'
-          type='button'
-          aria-label='Добавить'
+          className="profile__add-button"
+          type="button"
+          aria-label="Добавить"
           onClick={onAddPlace}
         />
       </section>
-      <ul className='elements'>{cardsElements}</ul>
+      <ul className="elements">{cardsElements.reverse()}</ul>
     </main>
   );
 }
