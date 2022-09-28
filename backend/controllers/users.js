@@ -111,11 +111,19 @@ const login = (req, res, next) => {
       res.cookie('jwt', token, {
         maxAge: 3600000 * 24 * 7,
         httpOnly: true,
-        sameSite: true,
+        sameSite: 'none',
+        secure: true,
       });
       res.send({ data: user.toJSON() });
     })
     .catch(next);
+};
+
+const logout = (req, res) => {
+  res.clearCookie('jwt');
+  res.send({
+    status: 'Signed out',
+  });
 };
 
 const getCurrentUser = (req, res, next) => {
@@ -134,6 +142,8 @@ const getCurrentUser = (req, res, next) => {
     });
 };
 
+const checkToken = (req, res) => (req.cookies.jwt ? res.send(true) : res.send(false));
+
 module.exports = {
   getUsers,
   getUserById,
@@ -141,5 +151,7 @@ module.exports = {
   updateUserProfile,
   updateUserAvatar,
   login,
+  logout,
   getCurrentUser,
+  checkToken,
 };

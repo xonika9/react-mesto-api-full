@@ -12,17 +12,23 @@ export function registration({ email, password }) {
 }
 export function authorize({ email, password }) {
   return fetch(`${baseUrl}/signin`, {
-    method: 'POST',
+    method: "POST",
     headers,
+    credentials: "include",
     body: JSON.stringify({ email, password }),
   }).then((res) => checkResponse(res));
 }
-export function getContent(token) {
-  return fetch(`${baseUrl}/users/me`, {
+export function logout() {
+  return fetch(`${baseUrl}/logout`, {
     method: 'GET',
-    headers: {
-      ...headers,
-      Authorization: `Bearer ${token}`,
-    },
+    headers,
+    credentials: 'include',
+  }).then((res) => checkResponse(res));
+}
+export function checkToken() {
+  return fetch(`${baseUrl}/checktoken`, {
+    method: 'GET',
+    headers,
+    credentials: 'include',
   }).then((res) => checkResponse(res));
 }
