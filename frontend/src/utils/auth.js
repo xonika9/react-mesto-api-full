@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:4000';
+const baseUrl = 'https://api.x9-mesto.nomoredomains.sbs';
 const headers = { 'Content-Type': 'application/json' };
 function checkResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);

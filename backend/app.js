@@ -8,13 +8,13 @@ const router = require('./routes/index');
 const errorHandler = require('./middlewares/error');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT = 4000 } = process.env;
+const { PORT = 3000 } = process.env;
 
 const app = express();
 
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', 'http://x9-mesto.nomoredomains.sbs', 'https://x9-mesto.nomoredomains.sbs'],
     credentials: true,
   }),
 );
