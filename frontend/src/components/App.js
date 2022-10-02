@@ -30,17 +30,33 @@ function App() {
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [registrationMessage, setRegisterMessage] = useState(null);
-  // const [userEmail, setUserEmail] = useState('');
   useEffect(() => {
-    if (!loggedIn) {
-      return;
-    }
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then(([user, cards]) => {
+    api
+      .getUserInfo()
+      .then((user) => {
+        setLoggedIn(true);
         setCurrentUser(user.data);
-        setCards(cards.data);
+        history.push('./');
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setLoggedIn(false);
+        history.push('./signin');
+        console.log(`Первый: ${err}`);
+      });
+  }, [history]);
+  useEffect(() => {
+    if (loggedIn) {
+      Promise.all([api.getUserInfo(), api.getInitialCards()])
+        .then(([user, cards]) => {
+          setCurrentUser(user.data);
+          setCards(cards.data);
+        })
+        .catch((err) => {
+          console.log(`Второй: ${err}`);
+          setLoggedIn(false);
+          history.push('/signin');
+        });
+    }
   }, [loggedIn]);
   const handleEditAvatarClick = () => setIsEditAvatarPopupOpen(true);
   const handleEditProfileClick = () => setIsEditProfilePopupOpen(true);
