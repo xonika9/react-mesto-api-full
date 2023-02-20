@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema(
     avatar: {
       type: String,
       default:
-        'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
+        'https://m.media-amazon.com/images/M/MV5BZDYwYzQxZWUtMDRmYS00ZDc0LTlhYWUtMGIzYjFkNDQ1ZmNlXkEyXkFqcGdeQXVyMTc4MzI2NQ@@._V1_.jpg',
       validate: {
         validator(link) {
           return avatarUrlRegExp.test(link);
@@ -62,12 +62,14 @@ userSchema.statics.findUserByCredentials = function (email, password) {
     .orFail(() => {
       throw new UnauthorizedError(wrongEmailOrPasswordMessage);
     })
-    .then((user) => bcrypt.compare(password, user.password).then((matched) => {
-      if (!matched) {
-        throw new UnauthorizedError(wrongEmailOrPasswordMessage);
-      }
-      return user;
-    }));
+    .then((user) =>
+      bcrypt.compare(password, user.password).then((matched) => {
+        if (!matched) {
+          throw new UnauthorizedError(wrongEmailOrPasswordMessage);
+        }
+        return user;
+      }),
+    );
 };
 
 module.exports = mongoose.model('user', userSchema);
