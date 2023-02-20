@@ -5,7 +5,7 @@ class Api {
   }
   _checkResponse = (res) => {
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-  }
+  };
   setAvatar = (formValues) => {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
@@ -51,14 +51,14 @@ class Api {
   };
   toggleLike = (cardId, isLiked) => {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: `${isLiked ? "DELETE" : "PUT"}`,
-      credentials: "include",
+      method: `${isLiked ? 'DELETE' : 'PUT'}`,
+      credentials: 'include',
       headers: this._headers,
     }).then(this._checkResponse);
   };
 }
 const api = new Api({
-  baseUrl: 'https://api.x9-mesto.nomoredomains.sbs',
+  baseUrl: 'https://api.mesto.xonika.ru',
   headers: {
     'Content-Type': 'application/json',
   },
