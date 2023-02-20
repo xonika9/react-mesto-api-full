@@ -2,6 +2,16 @@
 
 Mesto is a web application where you can create your account, customize it, add photos, delete and like them.
 
+## Links
+
+IP `95.142.45.190`
+
+Frontend https://mesto.xonika.ru/](https://mesto.xonika.ru/)
+
+Backend [https://api.mesto.xonika.ru/](https://api.mesto.xonika.ru/)
+
+***
+
 ***
 
 ## Stack
