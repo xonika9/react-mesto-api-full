@@ -41,7 +41,6 @@ function App() {
       .catch((err) => {
         setLoggedIn(false);
         history.push('./signin');
-        console.log(`Первый: ${err}`);
       });
   }, [history]);
   useEffect(() => {
@@ -52,7 +51,6 @@ function App() {
           setCards(cards.data);
         })
         .catch((err) => {
-          console.log(`Второй: ${err}`);
           setLoggedIn(false);
           history.push('/signin');
         });

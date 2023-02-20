@@ -14,7 +14,11 @@ const app = express();
 
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'http://x9-mesto.nomoredomains.sbs', 'https://x9-mesto.nomoredomains.sbs'],
+    origin: [
+      'http://localhost:3000',
+      'http://mesto.xonika.ru',
+      'https://mesto.xonika.ru',
+    ],
     credentials: true,
   }),
 );

@@ -1,4 +1,4 @@
-const baseUrl = 'https://api.x9-mesto.nomoredomains.sbs';
+const baseUrl = 'https://api.mesto.xonika.ru';
 const headers = { 'Content-Type': 'application/json' };
 function checkResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
@@ -12,9 +12,9 @@ export function registration({ email, password }) {
 }
 export function authorize({ email, password }) {
   return fetch(`${baseUrl}/signin`, {
-    method: "POST",
+    method: 'POST',
     headers,
-    credentials: "include",
+    credentials: 'include',
     body: JSON.stringify({ email, password }),
   }).then((res) => checkResponse(res));
 }
