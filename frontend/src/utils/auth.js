@@ -1,4 +1,4 @@
-const baseUrl = 'https://api.mesto.xonika.ru';
+const baseUrl = 'http://api.mesto.xonika.ru';
 const headers = { 'Content-Type': 'application/json' };
 function checkResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
