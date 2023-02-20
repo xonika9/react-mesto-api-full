@@ -58,7 +58,7 @@ class Api {
   };
 }
 const api = new Api({
-  baseUrl: 'http://api.mesto.xonika.ru',
+  baseUrl: 'https://api.mesto.xonika.ru',
   headers: {
     'Content-Type': 'application/json',
   },
