@@ -3,7 +3,7 @@
 Mesto is your personal social network. Here you can create a profile, make up a name and avatar, add photos, delete and like posts.
 
 <p align="center">
-  <img src="/mesto.png" width="700"/>
+  <img src="/mesto-scr-min.png" width="800"/>
 </p>
 
 ## Links
