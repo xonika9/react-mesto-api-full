@@ -1,18 +1,16 @@
 # Mesto
 
-Mesto is a web application where you can create your account, customize it, add photos, delete and like them.
+Mesto is your personal social network. Here you can create a profile, make up a name and avatar, add photos, delete and like posts.
+
+<p align="center">
+  <img src="/mesto.png" width="700"/>
+</p>
 
 ## Links
-
-IP `95.142.45.190`
 
 Frontend [https://mesto.xonika.ru/](https://mesto.xonika.ru/)
 
 Backend [https://api.mesto.xonika.ru/](https://api.mesto.xonika.ru/)
-
-***
-
-***
 
 ## Stack
 
@@ -47,8 +45,7 @@ Backend [https://api.mesto.xonika.ru/](https://api.mesto.xonika.ru/)
   * Getting the likes information from the server
   * Likes counter
 
-***
-### Installation
+## Installation
 
 ```bash
 # Clone the repository
@@ -64,11 +61,11 @@ npm i
 ### Scripts for frontend
 
 ```bash
-# Run a local server at localhost:3000
+# Run a local server at localhost
 npm start
 
 # Builds the app for production at the `build` folder
-npm build
+npm run build
 ```
 
 
