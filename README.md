@@ -22,7 +22,7 @@ Backend [https://api.mesto.xonika.ru/](https://api.mesto.xonika.ru/)
 * Babel
 * NodeJS
 * Express
-* MonngoDB
+* MongoDB
 * REST API
 
 ## Implementation
